@@ -1,10 +1,9 @@
 package edu.wctc.isp;
 
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class PaperbackBook implements Product {
+public class PaperbackBook implements Book {
 
     private String title;
     private String isbn;
@@ -22,11 +21,6 @@ public class PaperbackBook implements Product {
         this.releaseDate = releaseDate;
         this.author = author;
         this.pageCount = pageCount;
-    }
-
-    @Override
-    public String getArtist() {
-        return "";
     }
 
     @Override
@@ -55,11 +49,6 @@ public class PaperbackBook implements Product {
     }
 
     @Override
-    public Duration getPlayingTime() {
-        return null;
-    }
-
-    @Override
     public int getQuantityOnHand() {
         return quantityOnHand;
     }
@@ -77,7 +66,7 @@ public class PaperbackBook implements Product {
     @Override
     public void order(int quantity) {
         if (quantity > quantityOnHand) {
-            throw new IllegalArgumentException("Cannot order more than are on hand");
+            throw new IllegalArgumentException("Cannot order more than what is on hand");
         }
         quantityOnHand -= quantity;
     }
